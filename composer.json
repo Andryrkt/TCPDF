@@ -1,0 +1,20 @@
+{
+    "name": "user/tcpdf",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "App\\Controller\\": "src/Controller"
+        }
+    },
+    "authors": [
+        {
+            "name": "hasina LTN",
+            "email": "andryrkt@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "twig/twig": "^3.8",
+        "nikic/fast-route": "^1.3"
+    }
+}

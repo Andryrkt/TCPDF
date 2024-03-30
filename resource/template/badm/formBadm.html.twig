@@ -1,0 +1,53 @@
+
+{% extends "base.html.twig" %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="col" style="text-align: right;font-weight: bold;">
+                <h4>Demande d'Ordre de Mission</h4>
+            </div>
+            <form method="POST" action="">
+
+                <div class="row">
+                    <div class="col">
+                        <label for="typeMission" class="label-form"> Type de Mission</label>
+                        <select name="typeMission" id="typeMission" class="form-select"><!-- onchange="visible() à discuter voir dans le fiche -->
+
+                            <option value="ENTREE EN PARC">ENTREE EN PARC</option>
+                            <option value="CHANGEMENT D’AGENCE/SERVICE">CHANGEMENT D’AGENCE/SERVICE</option>
+                            <option value="CHANGEMENT DE CASIER">CHANGEMENT DE CASIER</option>
+                            <option value="MISE AU REBUT">MISE AU REBUT</option>
+                            <option value="CESSION D’ACTIF">CESSION D’ACTIF</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="idMateriel" class="label-form"> ID matériel</label>
+                        <input type="text" name="idMateriel" id="idMateriel" class="form-control">
+                    </div>
+                    <div class="col">
+                        <label for="numeroParc" class="label-form"> Numéro parc</label>
+                        <input type="text" name="numeroParc" id="numeroParc" class="form-control">
+                    </div>
+
+                    <div class="col">
+                        <label for="numeroSerie" class="label-form"> Numéro de série</label>
+                        <input type="text" name="numeroSerie" id="numeroSerie" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mt-2">
+                        <button type="submit" class="btn btn-info" name="formBadm"> Suivant</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
