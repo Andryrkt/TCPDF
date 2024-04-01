@@ -5,12 +5,12 @@
 {% block content %}
     <div class="container my-5">
 
-        <h2>Nouvelle BADM</h2>
+        <h2>Nouvelle demande Bordereau d’Acquisition et de Mouvement Matériel</h2>
 
-        <form action="#" method="post">
+        <form action="#" method="post" name="form">
 
             <div class="row">    
-              {{ form.inputReadonly('date', 'Date', '24/03/2024', {endpoint: '2', class: 'offset-10'}) }}
+              {{ form.inputReadonly('dateDemande', 'Date', '24/03/2024', {endpoint: '2', class: 'offset-10'}) }}
             </div>
 
             <div class="row">
@@ -32,44 +32,54 @@
                 {{form.inputReadonly('dateAchat', 'Date d’achat ', 'Exemple Date d’achat ',{endpoint: '12', class: 'col-lg-3 col-md-6'} )}}
             </div>
 
+
+
             <div class="row">
                 {{ form.sousTitre('Service émetteur')}}
             </div>
             <div class="row">
-                {{form.inputReadonly('agenceEmetteur', 'Agence', 'Exemple Agence',{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
-                {{form.inputReadonly('serviceEmetteur', 'Service', 'Exemple Service',{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
+                {{form.inputReadonly('agenceEmetteur', 'Agence','01 Tana',{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
+                {{form.inputReadonly('serviceEmetteur', 'Service', '80 Admin',{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
                 {{form.inputReadonly('casierEmetteur', 'Casier', 'Exemple Casier',{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
             </div>
+
+
 
             <div class="row">
                 {{ form.sousTitre('Service destinataire')}}
             </div>
             <div class="row">
-                {{form.select('agenceDestinataire', 'Agence', 'Exemple Agence',{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
-                {{form.select('serviceDestinataire', 'Service', 'Exemple Service',{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
+                {{form.select('agenceDestinataire', 'Agence', {tana :'01 Tana', bira : '02 Bira'},{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
+                {{form.select('serviceDestinataire', 'Service',{Admin:'80 Admin', Energie: '90 Energie'},{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
                 {{form.inputReadonly('casierDestinataire', 'Casier', 'Exemple Casier',{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
             </div>
             <div class="row">
-                {{form.inputText('motifDestinataire', 'Motif Arrêt Materiel', 'Exemple Motif de service déstinataire ',{required: 'required', endpoint: '12', maxlength: '100' } )}}
+                {{form.inputText('motifArretMateriel', 'Motif Arrêt Materiel', 'Exemple Motif de service déstinataire ',{required: 'required', endpoint: '12', maxlength: '100' } )}}
             </div>
+
+
 
 
             <div class="row">
                 {{ form.sousTitre('Entrée en parc')}}
             </div>
             <div class="row">
-                {{form.inputReadonly('etatAchat', 'Etat à l’achat:', 'Exemple Etat à l’achat:',{required: 'required', endpoint: '12', class: ' col-md-6'})}}
-                {{form.inputDate('dateMiseLocation', 'Date de mise en location', 'Exemple Date de mise en location',{endpoint: '12', class: ' col-md-6'})}}    
+                {{form.inputReadonly('etatAchat', 'Etat à l’achat:', '',{required: 'required', endpoint: '12', class: ' col-md-6'})}}
+                {{form.inputDate('dateMiseLocation', 'Date de mise en location', '',{endpoint: '12', class: ' col-md-6'})}}    
             </div>
+
+
 
             <div class="row">
                 {{ form.sousTitre('Valeur (MGA)')}}
             </div>
             <div class="row">
                 {{form.inputReadonly('coutAcquisition', 'Coût d’acquisition', 'Exemple Coût d’acquisition',{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
-                {{form.inputReadonly('amort', 'Amort', 'Exemple Amort',{endpoint: '12', class: 'col-lg-4 col-md-6'})}} 
-                {{form.inputReadonly('vnc', 'VNC', 'Exemple VNC',{endpoint: '12', class: 'col-lg-4 col-md-6'})}}   
+                {{form.inputReadonly('amortissement', 'Amortissement', 'Exemple Amort',{endpoint: '12', class: 'col-lg-4 col-md-6'})}} 
+                {{form.inputReadonly('valeurNetComptable', 'VNC', 'Exemple VNC',{endpoint: '12', class: 'col-lg-4 col-md-6'})}}   
             </div>
+
+
 
             <div class="row">
                 {{ form.sousTitre('Cession d’actif')}}
@@ -77,8 +87,10 @@
             <div class="row">
                 {{form.inputText('nomClient', 'Nom client', 'Exemple Nom client',{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
                 {{form.select('modalitePaiement', 'Modalité de paiement', {Traite:'Traite', Cheque:'Chèque', Virement:'Virement'},{endpoint: '12', class: 'col-lg-4 col-md-6'})}} 
-                {{form.inputNumber('prixHt', 'Prix HT', 'Exemple Prix HT',{ step:'0.01',  endpoint: '12', class: 'col-lg-4 col-md-6'})}}   
+                {{form.inputNumber('prixHt', 'Prix HT', '',{ step:'0.01',  endpoint: '12', class: 'col-lg-4 col-md-6'})}}   
             </div>
+
+
 
 
             <div class="row">
@@ -89,6 +101,8 @@
             </div>
 
 
+
+
             <div class="row">
                 {{ form.sousTitre('Etat machine')}}
             </div>
@@ -97,9 +111,11 @@
                 {{form.inputReadonly('kilometrage', 'Kilométrage', 'Exemple Kilométrage',{endpoint: '12', class: ' col-md-6'})}}    
             </div>
 
+
+
             <div class="row mt-5">
                 {{form.button('submit', 'Envoyer', 'enregistrer', 'primary')}}
-                {{form.button('annuler', 'Annuler', 'reset', 'secondary')}}
+                {# {{form.button('annuler', 'Annuler', 'reset', 'secondary')}} #}
             </div>
         </form>
     </div>    

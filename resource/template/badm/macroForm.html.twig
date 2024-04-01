@@ -2,6 +2,7 @@
 <div class="col-{{option.endpoint}} {{ option.class}}">
     <label for="{{ name }}" class="label-form fw-bold">{{ nom }}</label>
     <input class="form-control" type="text" id="{{ name }}" name="{{ name }}" value="{{ value }}" {{option.required}} disabled readonly />
+    <div class="form-text text-danger fst-italic" id="error-{{name}}" ></div>
 </div>
 {% endmacro %}
 
@@ -18,6 +19,7 @@
 <div class="col-{{option.endpoint}} {{ option.class}}">
     <label for="{{ name }}" class="label-form fw-bold">{{ nom }}</label>
     <input class="form-control" type="text" id="{{ name }}" name="{{ name }}" value="{{ value }}" {{option.maxlength}}  {{option.required}} />
+    <div class="form-text text-danger fst-italic" id="error-{{name}}" ></div>
 </div>
 {% endmacro %}
 
@@ -25,6 +27,7 @@
 <div class="col-{{option.endpoint}} {{ option.class}}">
     <label for="{{ name }}" class="label-form fw-bold">{{ nom }}</label>
     <input class="form-control" type="date" id="{{ name }}" name="{{ name }}" value="{{ value }}" {{option.required}} />
+    <div class="form-text text-danger fst-italic" id="error-{{name}}" ></div>
 </div>
 {% endmacro %}
 
@@ -32,6 +35,7 @@
 <div class="col-{{option.endpoint}} {{ option.class}}">
     <label for="{{ name }}" class="label-form fw-bold">{{ nom }}</label>
     <input class="form-control" type="number" id="{{ name }}" name="{{ name }}" value="{{ value }}" min="0" pattern="\d*" step="{{option.step}}" {{option.required}} />
+    <div class="form-text text-danger fst-italic" id="error-{{name}}" ></div>
 </div>
 {% endmacro %}
 
@@ -43,11 +47,12 @@
             <option value="{{row}}">{{row}}</option>
         {% endfor %}
     </select>
+    <div class="form-text text-danger fst-italic" id="error-{{name}}" ></div>
 </div>
 {% endmacro %}
 
-{% macro button(type, label, id=null, color) %}
+{% macro button(type, label, id=null, color, option = []) %}
     <div class="col-3 col-md-2 col-lg-1">
-        <button type="{{type}}" class="btn btn-{{color}}" id="{{ id }}">{{label}}</button>
+        <button type="{{type}}" class="btn btn-{{color}}" name="{{ id }}" onclick="{{option.onclick}}" >{{label}}</button>
     </div>
 {% endmacro %}

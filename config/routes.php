@@ -7,9 +7,9 @@ return [
         'controller' => 'App\\Controller\\BadmController:formBadm'
     ],
     [
-        'method' => 'GET',
+        'method' => 'POST',
         'path' => '/list',
-        'controller' => 'Tutorial\\Fastroute\\Controller\\LinksController:index'
+        'controller' => 'App\\Controller\\BadmController:formCompleBadm'
     ],
     [
         'method' => ['GET', 'POST'],
