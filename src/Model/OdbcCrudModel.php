@@ -79,9 +79,4 @@ class OdbcCrudModel extends Model
         }
         return $result;
     }
-
-    public function __destruct()
-    {
-        odbc_close($this->connexion);
-    }
 }

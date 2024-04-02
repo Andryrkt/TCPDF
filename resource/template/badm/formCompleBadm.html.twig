@@ -10,26 +10,31 @@
         <form action="#" method="post" name="form">
 
             <div class="row">    
-              {{ form.inputReadonly('dateDemande', 'Date', '24/03/2024', {endpoint: '2', class: 'offset-10'}) }}
+              {{ form.inputReadonly('dateDemande', 'Date', dateDemande, {endpoint: '2', class: 'offset-10'}) }}
             </div>
 
             <div class="row">
                 {{ form.sousTitre('Caractéristiques du matériel')}}
             </div>
             <div class="row">
-                {{form.inputReadonly('designation', 'Désignation ', 'Exemple Designation',{endpoint: '12', class: 'col-lg-3 col-md-6'})}}
-                {{form.inputReadonly('idMateriel', 'ID matériel ', 'Exemple ID matériel',{endpoint: '12', class: 'col-lg-3 col-md-6'} )}}
-                {{form.inputReadonly('numSerie', 'N° Série ', 'Exemple N° Série',{endpoint: '12', class: 'col-lg-3 col-md-6'} )}}
-                {{form.inputReadonly('numParc', 'N° Parc  ', 'Exemple N° Parc ',{endpoint: '12', class: 'col-lg-3 col-md-6'} )}}
+                {% for item in items %}
+                    {{form.inputReadonly('designation', 'Désignation ', item.mmat_desi,{endpoint: '12', class: 'col-lg-3 col-md-6'})}}
+                    {{form.inputReadonly('idMateriel', 'ID matériel ', item.mmat_nummat,{endpoint: '12', class: 'col-lg-3 col-md-6'} )}}
+                    {{form.inputReadonly('numSerie', 'N° Série ', item.mmat_numserie,{endpoint: '12', class: 'col-lg-3 col-md-6'} )}}
+                    {{form.inputReadonly('numParc', 'N° Parc  ', item.mmat_recalph,{endpoint: '12', class: 'col-lg-3 col-md-6'} )}}
+                    
+                {% endfor %}
             </div>
             <div class="row">
-                {{form.inputReadonly('groupe', 'Groupe ', 'Exemple Groupe',{endpoint: '12', class: 'col-lg-3 col-md-6'})}}
-                {{form.inputReadonly('constructeur', 'Constructeur', 'Exemple Constructeur',{endpoint: '12', class: 'col-lg-3 col-md-6'} )}}
-                {{form.inputReadonly('modele', 'Modèle ', 'Exemple Modèle ',{endpoint: '12', class: 'col-lg-3 col-md-6'} )}}
-                {{form.inputReadonly('anneeModele', 'Année du modèle', 'Exemple Année du modèle ',{endpoint: '12', class: 'col-lg-3 col-md-6'} )}}
+                {% for item in items %}
+                    {{form.inputReadonly('groupe', 'Groupe ', item.atab_lib,{endpoint: '12', class: 'col-lg-3 col-md-6'})}}
+                    {{form.inputReadonly('constructeur', 'Constructeur', item.mmat_marqmat,{endpoint: '12', class: 'col-lg-3 col-md-6'} )}}
+                    {{form.inputReadonly('modele', 'Modèle ', item.mmat_typmat,{endpoint: '12', class: 'col-lg-3 col-md-6'} )}}
+                    {{form.inputReadonly('anneeModele', 'Année du modèle', item.Annee_model,{endpoint: '12', class: 'col-lg-3 col-md-6'} )}}
+                {% endfor %}
             </div>
             <div class="row">
-                {{form.inputReadonly('dateAchat', 'Date d’achat ', 'Exemple Date d’achat ',{endpoint: '12', class: 'col-lg-3 col-md-6'} )}}
+                {{form.inputReadonly('dateAchat', 'Date d’achat ', item.mmat_datentr,{endpoint: '12', class: 'col-lg-3 col-md-6'} )}}
             </div>
 
 
@@ -38,9 +43,11 @@
                 {{ form.sousTitre('Service émetteur')}}
             </div>
             <div class="row">
+                {% for item in items %}
                 {{form.inputReadonly('agenceEmetteur', 'Agence','01 Tana',{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
                 {{form.inputReadonly('serviceEmetteur', 'Service', '80 Admin',{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
-                {{form.inputReadonly('casierEmetteur', 'Casier', 'Exemple Casier',{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
+                {{form.inputReadonly('casierEmetteur', 'Casier', item.mmat_numparc,{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
+                {% endfor %}
             </div>
 
 
@@ -51,7 +58,12 @@
             <div class="row">
                 {{form.select('agenceDestinataire', 'Agence', {tana :'01 Tana', bira : '02 Bira'},{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
                 {{form.select('serviceDestinataire', 'Service',{Admin:'80 Admin', Energie: '90 Energie'},{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
-                {{form.inputReadonly('casierDestinataire', 'Casier', 'Exemple Casier',{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
+                
+            </div>
+            <div class="row">
+                {{form.inputReadonly('casierDestinataireAgence', 'Casier Agence ou CLient', 'Exemple Casier',{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
+                {{form.inputReadonly('casierDestinataireChantier', 'Casier Chantier', 'Exemple Casier',{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
+                {{form.select('casierDestinataireStd', 'Casier STD', {'':'', STD_BY: 'STD BY', ATE: 'ATE', PANNE: 'PANNE'},{endpoint: '12', class: 'col-lg-4 col-md-6'})}}
             </div>
             <div class="row">
                 {{form.inputText('motifArretMateriel', 'Motif Arrêt Materiel', 'Exemple Motif de service déstinataire ',{required: 'required', endpoint: '12', maxlength: '100' } )}}

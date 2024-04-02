@@ -13,12 +13,12 @@
             <form method="POST" action="">
 
                 <div class="row">
-                    {{ form.select(typeMission, Type de Mission, {ENTREE_EN_PARC: 'ENTREE EN PARC', CHANGEMENT_AGENCE_SERVICE: "CHANGEMENT D’AGENCE/SERVICE", CHANGEMENT_DE_CASIER: 'CHANGEMENT DE CASIER', MISE_AU_REBUT: 'MISE AU REBUT', CESSION_ACTIF: "CESSION D’ACTIF" })}}
+                    {{ form.select('typeMission', 'Type de Mission', {ENTREE_EN_PARC: 'ENTREE EN PARC', CHANGEMENT_AGENCE_SERVICE: "CHANGEMENT D’AGENCE/SERVICE", CHANGEMENT_DE_CASIER: 'CHANGEMENT DE CASIER', MISE_AU_REBUT: 'MISE AU REBUT', CESSION_ACTIF: "CESSION D’ACTIF" })}}
                 </div>
                 <div class="row">
-                    {{form.inputNumber(idMateriel, ID matériel, {endpoint: '12', class: 'col-lg-4 col-md-6'})}}
-                   {{form.inputText(numeroParc, Numéro parc, {endpoint: '12', class: 'col-lg-4 col-md-6'} )}}
-                   {{form.inputText(numeroSerie, Numéro de série, {endpoint: '12', class: 'col-lg-4 col-md-6'} )}}
+                    {{form.inputNumber('idMateriel', 'ID matériel', null,  {endpoint: '12', class: 'col-lg-4 col-md-6'})}}
+                   {{form.inputText('numeroParc', 'Numéro parc', null,  {endpoint: '12', class: 'col-lg-4 col-md-6'} )}}
+                   {{form.inputText('numeroSerie', 'Numéro de série',null,  {endpoint: '12', class: 'col-lg-4 col-md-6'} )}}
                 </div>
                 <div class="row mt-2">
                    

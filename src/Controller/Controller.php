@@ -2,9 +2,11 @@
 
 namespace  App\Controller;
 
+
+use GenererPdf;
 use App\Model\BadmModel;
-use App\Model\OdbcCrudModel;
 use App\Model\PdoOdbcModel;
+use App\Model\OdbcCrudModel;
 
 
 
@@ -13,12 +15,14 @@ class Controller
     protected $loader;
     protected $twig;
     protected $badm;
+    protected $genererPdf;
     public function __construct()
     {
         $this->loader = new \Twig\Loader\FilesystemLoader(dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'resource/template');
         $this->twig = new \Twig\Environment($this->loader, ['debug' => true]);
         $this->twig->addExtension(new \Twig\Extension\DebugExtension());
         $this->badm = new BadmModel();
+        $this->genererPdf = new GenererPdf();
     }
 
     /**
@@ -33,19 +37,23 @@ class Controller
     /**
      * Incrimentation de Numero_DOM (DOMAnnéeMoisNuméro)
      */
-    public function DOM_autoINcriment(string $nomPic)
+    public function autoINcriment(string $nomDemande)
     {
         //NumDOM auto
-        include('FunctionChaine.php');
         $YearsOfcours = date('y'); //24
         $MonthOfcours = date('m'); //01
         $AnneMoisOfcours = $YearsOfcours . $MonthOfcours; //2401
+        var_dump($AnneMoisOfcours);
         // dernier NumDOM dans la base
-        $Max_Num = $this->badm->RecupereNumDom('Numero_Demande_BADM');
+        //$Max_Num = $this->badm->RecupereNumDom('Numero_Demande_BADM');
+        $Max_Num = 'BDM24040004';
         //num_sequentielless
         $vNumSequential =  substr($Max_Num, -4); // lay 4chiffre msincrimente
+        var_dump($vNumSequential);
         $DateAnneemoisnum = substr($Max_Num, -8);
+        var_dump($DateAnneemoisnum);
         $DateYearsMonthOfMax = substr($DateAnneemoisnum, 0, 4);
+        var_dump($DateYearsMonthOfMax);
         if ($DateYearsMonthOfMax == $AnneMoisOfcours) {
             $vNumSequential =  $vNumSequential + 1;
         } else {
@@ -53,8 +61,8 @@ class Controller
                 $vNumSequential = 1;
             }
         }
-        strlen($vNumSequential);
-        $Result_Num = $nomPic . $AnneMoisOfcours . $this->CompleteChaineCaractere($vNumSequential, 4, "0", "G");
+        var_dump($vNumSequential);
+        $Result_Num = $nomDemande . $AnneMoisOfcours . $this->CompleteChaineCaractere($vNumSequential, 4, "0", "G");
         return $Result_Num;
     }
 
