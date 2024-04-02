@@ -6,11 +6,13 @@ class BadmController extends Controller
 {
     public function formBadm()
     {
-        $this->twig->display('badm/formBadm.html.twig');
+
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             var_dump($_POST);
             $this->twig->display('badm/formCompleBadm.html.twig');
+        } else {
+            $this->twig->display('badm/formBadm.html.twig');
         }
     }
 

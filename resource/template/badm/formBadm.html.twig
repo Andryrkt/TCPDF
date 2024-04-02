@@ -1,6 +1,8 @@
 
 {% extends "base.html.twig" %}
 
+{% import "badm/macroForm.html.twig" as form %}
+
 {% block content %}
 <div class="container">
     <div class="card">
@@ -11,38 +13,18 @@
             <form method="POST" action="">
 
                 <div class="row">
-                    <div class="col">
-                        <label for="typeMission" class="label-form"> Type de Mission</label>
-                        <select name="typeMission" id="typeMission" class="form-select"><!-- onchange="visible() à discuter voir dans le fiche -->
-
-                            <option value="ENTREE EN PARC">ENTREE EN PARC</option>
-                            <option value="CHANGEMENT D’AGENCE/SERVICE">CHANGEMENT D’AGENCE/SERVICE</option>
-                            <option value="CHANGEMENT DE CASIER">CHANGEMENT DE CASIER</option>
-                            <option value="MISE AU REBUT">MISE AU REBUT</option>
-                            <option value="CESSION D’ACTIF">CESSION D’ACTIF</option>
-
-                        </select>
-                    </div>
+                    {{ form.select(typeMission, Type de Mission, {ENTREE_EN_PARC: 'ENTREE EN PARC', CHANGEMENT_AGENCE_SERVICE: "CHANGEMENT D’AGENCE/SERVICE", CHANGEMENT_DE_CASIER: 'CHANGEMENT DE CASIER', MISE_AU_REBUT: 'MISE AU REBUT', CESSION_ACTIF: "CESSION D’ACTIF" })}}
                 </div>
                 <div class="row">
-                    <div class="col">
-                        <label for="idMateriel" class="label-form"> ID matériel</label>
-                        <input type="text" name="idMateriel" id="idMateriel" class="form-control">
-                    </div>
-                    <div class="col">
-                        <label for="numeroParc" class="label-form"> Numéro parc</label>
-                        <input type="text" name="numeroParc" id="numeroParc" class="form-control">
-                    </div>
-
-                    <div class="col">
-                        <label for="numeroSerie" class="label-form"> Numéro de série</label>
-                        <input type="text" name="numeroSerie" id="numeroSerie" class="form-control">
-                    </div>
+                    {{form.inputNumber(idMateriel, ID matériel, {endpoint: '12', class: 'col-lg-4 col-md-6'})}}
+                   {{form.inputText(numeroParc, Numéro parc, {endpoint: '12', class: 'col-lg-4 col-md-6'} )}}
+                   {{form.inputText(numeroSerie, Numéro de série, {endpoint: '12', class: 'col-lg-4 col-md-6'} )}}
                 </div>
-                <div class="row">
-                    <div class="mt-2">
-                        <button type="submit" class="btn btn-info" name="formBadm"> Suivant</button>
-                    </div>
+                <div class="row mt-2">
+                   
+
+                        <button type="submit" class="btn btn-info"> Suivant</button>
+                   
                 </div>
             </form>
         </div>

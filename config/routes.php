@@ -2,7 +2,7 @@
 
 return [
     [
-        'method' => 'GET',
+        'method' => ['GET', 'POST'],
         'path' => '/',
         'controller' => 'App\\Controller\\BadmController:formBadm'
     ],
