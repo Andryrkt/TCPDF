@@ -25,6 +25,12 @@ class Controller
         $this->genererPdf = new GenererPdf();
     }
 
+
+    public function getTime()
+    {
+        date_default_timezone_set('Indian/Antananarivo');
+        return date("H:i");
+    }
     /**
      * Date Système
      */

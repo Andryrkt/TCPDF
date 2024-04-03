@@ -104,6 +104,14 @@ export const send =  (event) => {
         //     emplacementErreur.appendChild(listeErreurs); // Ajouter la nouvelle liste d'erreurs
         // }
         
+    };
+
+
+    export const DonnerInformix = () =>
+    {
+        fetchManager.get('list')
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
     }
 
 };

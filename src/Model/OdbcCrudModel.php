@@ -7,7 +7,7 @@ namespace App\Model;
 class OdbcCrudModel extends Model
 {
 
-    public function create($tableName, $data)
+    public function create(string $tableName, array $data)
     {
         $columns = implode(", ", array_keys($data));
         $values = implode(", ", array_map(function ($value) {

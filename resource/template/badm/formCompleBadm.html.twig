@@ -8,7 +8,7 @@
         <h2>Nouvelle demande Bordereau d’Acquisition et de Mouvement Matériel</h2>
 
         <form action="#" method="post" name="form">
-
+            <input type="hidden" name="codeMouvement" value="{{codeMouvement}}">
             <div class="row">    
               {{ form.inputReadonly('dateDemande', 'Date', dateDemande, {endpoint: '2', class: 'offset-10'}) }}
             </div>
