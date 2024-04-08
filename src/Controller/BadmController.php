@@ -7,7 +7,7 @@ class BadmController extends Controller
 
     public function formBadm()
     {
-         
+
         $this->SessionStart();
         $UserConnect = $_SESSION['user'];
         $Servofcours = $this->DomModel->getserviceofcours($_SESSION['user']);
@@ -29,16 +29,15 @@ class BadmController extends Controller
             [
                 'infoUserCours' => $infoUserCours,
                 'boolean' => $boolean,
-                'CodeServiceofCours' =>$CodeServiceofCours,
+                'CodeServiceofCours' => $CodeServiceofCours,
 
             ]
         );
-        
     }
 
     public function envoiDonnerFiltrer()
     {
-        
+
         $data1 = $this->badm->recuperationCaracterMateriel();
 
         header("Content-type:application/json");
@@ -60,16 +59,15 @@ class BadmController extends Controller
 
 
             $this->twig->display(
-                'badm/formCompleBadm.html.twig', 
+                'badm/formCompleBadm.html.twig',
                 [
                     'codeMouvement' => $_POST['typeMission'],
                     'infoUserCours' => $infoUserCours,
                     'boolean' => $boolean,
                     'dateDemande' => $dateDemande
-            ]
-        );
+                ]
+            );
         }
-
     }
 
     public function formCompleBadm()
@@ -86,12 +84,12 @@ class BadmController extends Controller
 
             $insertDbBadm = [
                 'Numero_Demande_BADM' => $NumBDM,
-                'Code_Mouvement' => $_POST['codeMouvment'] ,
+                'Code_Mouvement' => $_POST['codeMouvment'],
                 'ID_Materiel' => $data['idMateriel'],
-                'Nom_Session_Utilisateur' =>$_SESSION['user'] ,
+                'Nom_Session_Utilisateur' => $_SESSION['user'],
                 'Date_Demande' => $dateDemande,
                 'Heure_Demande' => $heureDemande,
-            
+
                 'Agence_Service_Emetteur' => $data['agenceServiceEmetteur'],
                 'Casier_Emetteur' => $data['casierEmetteur'],
                 'Agence_Service_Destinataire' => $data['agenceServiceDestinataire'],
@@ -108,9 +106,9 @@ class BadmController extends Controller
                 'Motif_Mise_Rebut'  => $data['motifMiseRebut'],
                 'Heure_machine'  => $data['heuresMachine'],
                 'KM_machine'  => $data['kilometrage']
-            ]
+            ];
 
-            $this->odbcCrud->create('Demande_Mouvement_Materiel', $insertDbBadm);
+            // $this->odbcCrud->create('Demande_Mouvement_Materiel', $insertDbBadm);
 
             // $generPdfBadm = [
             //     'NUM_BDM' => $NumBDM,
@@ -144,18 +142,61 @@ class BadmController extends Controller
             //     'Agence_Service_Emetteur_Non_separer' => implode('',explode('-', $data['agenceServiceEmetteur']))
             // ];
             // $this->genererPdf->genererPdfBadm($generPdfBadm);
-            if (!empty($data)) {
-                $tab = [
-                    "message" => $jsonsata
-                ];
-            } else {
-                $tab = [
-                    "message" => 'zero données'
-                ];
+            // if (!empty($data)) {
+            //     $tab = [
+            //         "message" => $jsonsata
+            //     ];
+            // } else {
+            //     $tab = [
+            //         "message" => 'zero données'
+            //     ];
+            // }
+
+
+            // echo json_encode($tab);
+        }
+    }
+
+
+
+    public function envoiJsonBadm()
+    {
+        $badmJson = $this->badm->RechercheModelAll();
+
+        header("Content-type:application/json");
+
+        $jsonData = json_encode($badmJson);
+
+
+
+        if ($jsonData === false) {
+            // L'encodage a échoué, vérifions pourquoi
+            switch (json_last_error()) {
+                case JSON_ERROR_NONE:
+                    echo 'Aucune erreur';
+                    break;
+                case JSON_ERROR_DEPTH:
+                    echo 'Profondeur maximale atteinte';
+                    break;
+                case JSON_ERROR_STATE_MISMATCH:
+                    echo 'Inadéquation des états ou mode invalide';
+                    break;
+                case JSON_ERROR_CTRL_CHAR:
+                    echo 'Caractère de contrôle inattendu trouvé';
+                    break;
+                case JSON_ERROR_SYNTAX:
+                    echo 'Erreur de syntaxe, JSON malformé';
+                    break;
+                case JSON_ERROR_UTF8:
+                    echo 'Caractères UTF-8 malformés, possiblement mal encodés';
+                    break;
+                default:
+                    echo 'Erreur inconnue';
+                    break;
             }
-
-
-            echo json_encode($tab);
+        } else {
+            // L'encodage a réussi
+            echo $jsonData;
         }
     }
 }

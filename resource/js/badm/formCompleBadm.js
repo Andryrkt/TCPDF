@@ -107,7 +107,7 @@ export const send =  (event) => {
     };
 
 
-    export const DonnerInformix = () =>
+     const DonnerInformix = () =>
     {
         fetchManager.get('list')
         .then(data => console.log(data))
